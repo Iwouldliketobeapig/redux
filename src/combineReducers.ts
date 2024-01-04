@@ -125,6 +125,7 @@ export default function combineReducers(reducers: {
 }) {
   const reducerKeys = Object.keys(reducers)
   const finalReducers: { [key: string]: Reducer<any, any, any> } = {}
+  // 过滤，只有传入合并的reducer为function才是最终的reducer
   for (let i = 0; i < reducerKeys.length; i++) {
     const key = reducerKeys[i]
 
@@ -147,6 +148,7 @@ export default function combineReducers(reducers: {
     unexpectedKeyCache = {}
   }
 
+  // 判断是否返回默认数据
   let shapeAssertionError: unknown
   try {
     assertReducerShape(finalReducers)
